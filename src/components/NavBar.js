@@ -1,4 +1,4 @@
-export const Navi = () => {
+export const NavBar = () => {
     return(
         <nav>
             <a>INICIO</a>

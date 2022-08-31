@@ -1,18 +1,31 @@
+import { useEffect, useState } from 'react'
 import {ItemCount} from './ItemCount'
+import { PedirDatos } from '../Helpers/PedirDatos'
+import { Item } from './Item'
 
-export const ItemProducto = (propiedades) => {
+export const ItemListContainer = () => {
+    
+    const [productos,setProductos] = useState([])
+    console.log(productos)
+
+    useEffect(()=>{
+        PedirDatos ()
+            .then((res)=> {
+                setProductos(res)
+            })
+            .catch((error)=> {
+                console.log(error)
+            })
+            .finally(()=> {
+                console.log("Fin del Proceso")
+            })
+    }, [])
+
     return(
-        <div className="Items">
-            <img src={propiedades.imagen} alt="cafecito"/>
-            <br/>
-            {propiedades.nombre}
-            <br/>
-            {propiedades.precio}
-            <br/>
-            {propiedades.cantidad}
-            <br/>
-            <ItemCount inicial={propiedades.initial} stocky={propiedades.stock}/>
-            <button type="button" class="comp btn btn-dark" href="productos.html">COMPRAR</button>
+        <div className='Lista'>
+            <h2>Productos</h2>
+            <hr/>
+            { productos.map((pro) => <Item producto={pro} key={pro.id}/>)}
         </div>
     )
 }

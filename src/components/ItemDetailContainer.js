@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import {ItemCount} from './ItemCount'
 import { PedirDatos } from '../Helpers/PedirDatos'
 import { Item } from './Item'
 import { ItemDetail } from './ItemDetail'
